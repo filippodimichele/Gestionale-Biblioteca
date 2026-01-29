@@ -8,5 +8,6 @@ class Prestito:
     def chiudi(self, data_restituzione):
         self.data_restituzione = data_restituzione
     
-    def is_attivo
+    def is_attivo(self):
+        return self.data_restituzione is None
 
