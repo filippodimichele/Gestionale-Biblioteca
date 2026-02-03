@@ -1,19 +1,25 @@
 class Libro:
-    def __init__(self,titolo, isbn, autore):
+
+    def __init__(self, titolo, isbn, autore):
         self.titolo = titolo
         self.isbn = isbn
-        self.disponibile = True #Se disponibile
-        
-        
-    def _isdisponibile(self, disponibile):
-        return self._isdisponibile
-    
-    def prestito(self):
-        self.disponibile = False #il prestito non è disponibile
-        
+        self.autore = autore
+        self.disponibile = True
+
+    def __repr__(self):
+        stato = "Disponibile" if self.disponibile else "In prestito"
+        return f"Libro(titolo='{self.titolo}', isbn='{self.isbn}', stato='{stato}')"
+
+    def __eq__(self, other):
+        if not isinstance(other, Libro):
+            return False
+        return self.isbn == other.isbn
+
+    def presta(self):
+        if self.disponibile:
+            self.disponibile = False
+            return True
+        return False
+
     def restituisci(self):
-        self.disponibile = True  # True se restituisce il prestito
-        
-        
-    def __str__(self):
-        stato = "Disponibile" if self.disponibile else "In prestito" #Solo se disponibile, altrimenti in prestito
+        self.disponibile = True
